@@ -159,9 +159,16 @@ function prosesPesanTeks($message)
     $pesan = $message['text'];
     $chatid = $message['chat']['id'];
     $fromid = $message['from']['id'];
+    $pesandicak = explode(' ',$pesan);
 
     switch (true) {
 
+        case $pesan == '/cek':
+            sendApiAction($chatid);
+            $text = 'pesan di cek: '.$pesandicak[1];
+            sendApiMsg($chatid, $text);
+            break;
+            
         case $pesan == '/id':
             sendApiAction($chatid);
             $text = 'ID Kamu adalah: '.$fromid;
