@@ -159,21 +159,9 @@ function prosesPesanTeks($message)
     $pesan = $message['text'];
     $chatid = $message['chat']['id'];
     $fromid = $message['from']['id'];
-    $inputdicak = explode(' ',$pesan);
-    $isinya1 = $inputdicak[1]; //
-    $isinya2 = $inputdicak[2]; //
-    $isinya3 = $inputdicak[3]; //
-    $isinya4 = $inputdicak[4]; //
-    $isinya5 = $inputdicak[5]; //
 
     switch (true) {
 
-        case $pesan == '/cek':
-            sendApiAction($chatid);
-            $text = 'dicek $isinya1, $isinya2'.$fromid;
-            sendApiMsg($chatid, $text);
-            break;
-            
         case $pesan == '/id':
             sendApiAction($chatid);
             $text = 'ID Kamu adalah: '.$fromid;
@@ -217,6 +205,15 @@ function prosesPesanTeks($message)
             sendApiAction($chatid);
 
             $text = '*Echo:* '.$hasil[1];
+            sendApiMsg($chatid, $text, false, 'Markdown');
+            break;
+            
+        case preg_match("/\/cek (.*)/", $pesan, $hasil):
+            sendApiAction($chatid);
+
+            $text = '*Echo:* '.$hasil[1];
+            $text = '*Echo:* '.$hasil[2];
+            $text = '*Echo:* '.$hasil[3];
             sendApiMsg($chatid, $text, false, 'Markdown');
             break;
 
