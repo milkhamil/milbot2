@@ -208,15 +208,6 @@ function prosesPesanTeks($message)
             sendApiMsg($chatid, $text, false, 'Markdown');
             break;
             
-        case preg_match("/\/cek (.*)/", $pesan, $hasil):
-            sendApiAction($chatid);
-
-            $text = '*Echo:* '.$hasil[1];
-            $text = '*Echo:* '.$hasil[2];
-            $text = '*Echo:* '.$hasil[3];
-            sendApiMsg($chatid, $text, false, 'Markdown');
-            break;
-
         default:
             // code...
             break;
